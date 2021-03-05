@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BASEKETBALL SHOOTAROUND</title>
+    <style>
+        @font-face {
+            src: url("https://github.com/UmarJafar/UmarJafar.github.io/blob/master/PWChalk.ttf");
+            font-family: "PWChalk";
+        }
+
+        @font-face {
+            src: url("https://github.com/UmarJafar/UmarJafar.github.io/blob/master/bradhitc.ttf");
+            font-family: "Brad";
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            /* background-color: chocolate; */
+            /* box-sizing: border-box; */
+            background: #849970;
+        }
+
+        .container {
+            margin: 0 auto;
+            width: 100%;
+            background: #849970;
+        }
+
+        #top__wall {
+            text-transform: uppercase;
+            background-image: url(https://static.wixstatic.com/media/579161_35eff6ef7c754b13be08c88910532931~mv2.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 100% 100%;
+            text-align: center;
+            /* text-decoration: underline; */
+            padding: 30px 0;
+            font-family: "PWChalk", serif;
+            box-shadow: 1px 7px 5px 0px rgba(0, 0, 0, 100);
+        }
+
+        #top__wall h1 {
+            border-bottom: 3px solid #000000;
+            display: inline-block;
+            margin-bottom: 0;
+            margin-top: 30px;
+            letter-spacing: 3px;
+            font-size: 44px;
+            font-weight: 600;
+        }
+
+        #top__wall h2 {
+            margin-top: 15px;
+            font-size: 22px;
+            margin-bottom: 30;
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        #hint__table {
+            position: relative;
+            top: -3px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        #hint__table table,
+        #scorecard table {
+            font-family: "Brad", cursive;
+            border-collapse: collapse;
+            width: 98%;
+            border: 2px solid #000;
+            margin: 0 auto;
+            box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.75);
+        }
+
+        #hint__table td,
+        #hint__table th,
+        #scorecard td,
+        #scorecard th {
+            border-bottom: 2px solid #000;
+            padding: 7px;
+            width: 33%;
+        }
+
+        #hint__table tr,
+        #scorecard tr,
+        #scorecard caption {
+            background-color: rgb(217, 217, 217);
+        }
+
+        #hint__table th,
+        #scorecard th {
+            padding-top: 3px;
+            padding-bottom: 3px;
+            text-align: left;
+            background-color: #000000;
+            font-size: 20px;
+            color: white;
+        }
+
+        /* Score Card */
+        #scorecard {
+            padding: 3px;
+        }
+
+        #scorecard td,
+        #scorecard th {
+            font-size: 20px;
+            text-align: left;
+            font-weight: 600;
+            width: 5.5%;
+            border: 2px solid #000;
+        }
+
+        #scorecard th {
+            text-align: center;
+            background-color: #aeaaaa;
+            color: #000;
+        }
+
+        #scorecard caption {
+            text-align: center;
+            background-color: #aeaaaa;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            border: 2px solid #000;
+            border-bottom: none;
+            font-weight: 600;
+            font-size: 26px;
+        }
+
+        #scorecard {
+            margin: 30px 0;
+            padding: 35px 5px;
+            padding-bottom: 0;
+        }
+
+        #scorecard table td:first-child {
+            padding: 0 5px;
+            text-align: left;
+            background-color: #aeaaaa;
+        }
+
+        #scorecard td {
+            padding: 0;
+            margin: 0;
+        }
+
+        #scorecard select {
+            font-family: "Brad", cursive;
+            outline: none;
+            border: none;
+            display: block;
+            padding-top: 7px;
+            padding-bottom: 7px;
+            background-color: #d8d8d8;
+            text-align: left;
+            margin: 0 auto;
+            width: 70px;
+            font-size: 18px;
+            font-weight: 600;
+            /* min-width: 43px; */
+            padding-left: 3px;
+            padding-right: 3px;
+        }
+
+        #scorecard select option {
+            margin: 0 auto;
+            padding: 7px;
+            font-size: 18px;
+            font-weight: 900;
+        }
+
+        /* apply CSS to the select tag of  
+         .dropdown-container div*/
+
+        #scorecard select {
+            /* for Firefox */
+            -moz-appearance: none;
+            /* for Safari, Chrome, Opera */
+            -webkit-appearance: none;
+        }
+
+        /* for IE10 */
+        #scorecard select::-ms-expand {
+            display: none;
+        }
+
+        img.tape {
+            position: relative;
+            width: 100px;
+            left: 120px;
+            top: -25px;
+            margin: 0 auto;
+            z-index: 1000000;
+        }
+
+        img#t2 {
+            transform: rotate(30deg);
+        }
+
+        img#t3 {
+            transform: rotate(30deg);
+            left: -400px;
+        }
+
+        img#t4 {
+            transform: rotate(160deg);
+            left: 200px;
+        }
+
+        .hint {
+            font-weight: 900 !important;
+            color: #ff0000;
+            /* padding-left: 3px !important; */
+            text-align: center !important;
+        }
+
+        /* Custom Select */
+
+        /* End Custom */
+
+        @media screen and (min-width: 1440px) {
+
+            #hint__table td,
+            #scorecard td,
+            #hint__table th,
+            #scorecard th,
+            #scorecard caption {
+                font-size: 40px;
+            }
+
+            #top__wall h1 {
+                font-size: 82px;
+            }
+
+            #top__wall h2 {
+                font-size: 38px;
+            }
+        }
+
+        @media screen and (max-width: 1326px) {
+
+            #scorecard th,
+            #scorecard td {
+                width: 40px;
+                font-size: 14px;
+            }
+
+            #scorecard select {
+                width: 95%;
+                font-size: 14px;
+            }
+
+            img#t3 {
+                left: -200px;
+            }
+        }
+
+        @media screen and (max-width: 792px) {
+            #top__wall h1 {
+                font-size: 22px;
+            }
+
+            #top__wall h2 {
+                font-size: 18px;
+            }
+
+            #t1 {
+                left: 20px;
+            }
+
+            #t2 {
+                left: 20px;
+            }
+        }
+
+        @media screen and (max-width: 700px) {
+
+            /* #scorecard th,
+  #scorecard td,
+  #scorecard select {
+    width: 40px;
+    font-size: 14px;
+  }
+  #scorecard select {
+    font-size: 14px;
+  } */
+            #t1 {
+                display: none;
+            }
+
+            #t2 {
+                display: none;
+            }
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div id="top__wall">
+            <h1>ALCATRAZ BASEKETBALL SHOOTAROUND</h1>
+            <h2>Rules: 1 vs. 1;only the winner stays on the court</h2>
+        </div>
+        <div id="hint__table">
+            <table>
+                <tr>
+
+                    <th>All Players <img class="tape" id="t1"
+                            src="https://static.wixstatic.com/media/579161_ee3626c45cf54e6bbf9bf0c393c81636~mv2.png"
+                            alt="tape"></th>
+                    <th>Games Played</th>
+                    <th>Notes<img class="tape" id="t2"
+                            src="https://static.wixstatic.com/media/579161_ee3626c45cf54e6bbf9bf0c393c81636~mv2.png"
+                            alt="tape"></th>
+                </tr>
+                <tr>
+                    <td>Keith</td>
+                    <td>8</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Mike</td>
+                    <td>12</td>
+                    <td>Currently on a 7-game win steak</td>
+                </tr>
+                <tr>
+                    <td>Frank</td>
+                    <td>14</td>
+                    <td> </td>
+                </tr>
+            </table>
+        </div>
+        <div id="scorecard" style="overflow-x:auto;">
+            <table>
+                <caption> <img class="tape" id="t3"
+                        src="https://static.wixstatic.com/media/579161_ee3626c45cf54e6bbf9bf0c393c81636~mv2.png"
+                        alt="tape"> SCORECARD <img class="tape" id="t4"
+                        src="https://static.wixstatic.com/media/579161_ee3626c45cf54e6bbf9bf0c393c81636~mv2.png"
+                        alt="tape"></caption>
+                <tr>
+                    <th></th>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <th>5</th>
+                    <th>6</th>
+                    <th>7</th>
+                    <th>8</th>
+                    <th>9</th>
+                    <th>10</th>
+                    <th>11</th>
+                    <th>12</th>
+                    <th>13</th>
+                    <th>14</th>
+                    <th>15</th>
+                    <th>16</th>
+                    <th>17</th>
+                </tr>
+                <tr>
+                    <td>Winner</td>
+                    <td>
+                        <!-- <div class="custom_select" style="width:200px;"> -->
+                        <select name="players" id="players">
+                            <option value="none" selected disabled hidden></option>
+                            <option value="Keith">Keith</option>
+                            <option value="Mike">Mike</option>
+                            <option value="Frank">Frank</option>
+                        </select>
+                        <!-- </div> -->
+                    </td>
+                    <td>
+                        <select name="players" id="players">
+                            <option value="none" selected disabled hidden></option>
+                            <option value="Keith">Keith</option>
+                            <option value="Mike">Mike</option>
+                            <option value="Frank">Frank</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="players" id="players">
+                            <option value="none" selected disabled hidden></option>
+                            <option value="Keith">Keith</option>
+                            <option value="Mike">Mike</option>
+                            <option value="Frank">Frank</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="players" id="players">
+                            <option value="none" selected disabled hidden></option>
+                            <option value="Keith">Keith</option>
+                            <option value="Mike">Mike</option>
+                            <option value="Frank">Frank</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="players" id="players">
+                            <option value="none" selected disabled hidden></option>
+                            <option value="Keith">Keith</option>
+                            <option value="Mike">Mike</option>
+                            <option value="Frank">Frank</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="players" id="players">
+                            <option value="none" selected disabled hidden></option>
+                            <option value="Keith">Keith</option>
+                            <option value="Mike">Mike</option>
+                            <option value="Frank">Frank</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="players" id="players">
+                            <option value="none" selected disabled hidden></option>
+                            <option value="Keith">Keith</option>
+                            <option value="Mike">Mike</option>
+                            <option value="Frank">Frank</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="players" id="players">
+                            <option value="none" selected disabled hidden></option>
+                            <option value="Keith">Keith</option>
+                            <option value="Mike">Mike</option>
+                            <option value="Frank">Frank</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="players" id="players">
+                            <option value="none" selected disabled hidden></option>
+                            <option value="Keith">Keith</option>
+                            <option value="Mike">Mike</option>
+                            <option value="Frank">Frank</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="players" id="players">
+                            <option value="none" selected disabled hidden></option>
+                            <option value="Keith">Keith</option>
+                            <option value="Mike">Mike</option>
+                            <option value="Frank">Frank</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="players" id="players">
+                            <option value="none" selected disabled hidden></option>
+                            <option value="Keith">Keith</option>
+                            <option value="Mike">Mike</option>
+                            <option value="Frank">Frank</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="players" id="players">
+                            <option value="none" selected disabled hidden></option>
+                            <option value="Keith">Keith</option>
+                            <option value="Mike">Mike</option>
+                            <option value="Frank">Frank</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="players" id="players">
+                            <option value="none" selected disabled hidden></option>
+                            <option value="Keith">Keith</option>
+                            <option value="Mike">Mike</option>
+                            <option value="Frank">Frank</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="players" id="players">
+                            <option value="none" selected disabled hidden></option>
+                            <option value="Keith">Keith</option>
+                            <option value="Mike">Mike</option>
+                            <option value="Frank">Frank</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="players" id="players">
+                            <option value="none" selected disabled hidden></option>
+                            <option value="Keith">Keith</option>
+                            <option value="Mike">Mike</option>
+                            <option value="Frank">Frank</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="players" id="players">
+                            <option value="none" selected disabled hidden></option>
+                            <option value="Keith">Keith</option>
+                            <option value="Mike">Mike</option>
+                            <option value="Frank">Frank</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="players" id="players">
+                            <option value="none" selected disabled hidden></option>
+                            <option value="Keith">Keith</option>
+                            <option value="Mike">Mike</option>
+                            <option value="Frank">Frank</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Loser</td>
+                    <td>
+                        <select name="players" id="players">
+                            <option value="none" selected disabled hidden></option>
+                            <option value="Keith">Keith</option>
+                            <option value="Mike">Mike</option>
+                            <option value="Frank">Frank</option>
+                        </select>
+                    </td>
+                    <td class="hint">
+                        Keith
+                    </td>
+                    <td>
+                        <select name="players" id="players">
+                            <option value="none" selected disabled hidden></option>
+                            <option value="Keith">Keith</option>
+                            <option value="Mike">Mike</option>
+                            <option value="Frank">Frank</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="players" id="players">
+                            <option value="none" selected disabled hidden></option>
+                            <option value="Keith">Keith</option>
+                            <option value="Mike">Mike</option>
+                            <option value="Frank">Frank</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="players" id="players">
+                            <option value="none" selected disabled hidden></option>
+                            <option value="Keith">Keith</option>
+                            <option value="Mike">Mike</option>
+                            <option value="Frank">Frank</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="players" id="players">
+                            <option value="none" selected disabled hidden></option>
+                            <option value="Keith">Keith</option>
+                            <option value="Mike">Mike</option>
+                            <option value="Frank">Frank</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="players" id="players">
+                            <option value="none" selected disabled hidden></option>
+                            <option value="Keith">Keith</option>
+                            <option value="Mike">Mike</option>
+                            <option value="Frank">Frank</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="players" id="players">
+                            <option value="none" selected disabled hidden></option>
+                            <option value="Keith">Keith</option>
+                            <option value="Mike">Mike</option>
+                            <option value="Frank">Frank</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="players" id="players">
+                            <option value="none" selected disabled hidden></option>
+                            <option value="Keith">Keith</option>
+                            <option value="Mike">Mike</option>
+                            <option value="Frank">Frank</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="players" id="players">
+                            <option value="none" selected disabled hidden></option>
+                            <option value="Keith">Keith</option>
+                            <option value="Mike">Mike</option>
+                            <option value="Frank">Frank</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="players" id="players">
+                            <option value="none" selected disabled hidden></option>
+                            <option value="Keith">Keith</option>
+                            <option value="Mike">Mike</option>
+                            <option value="Frank">Frank</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="players" id="players">
+                            <option value="none" selected disabled hidden></option>
+                            <option value="Keith">Keith</option>
+                            <option value="Mike">Mike</option>
+                            <option value="Frank">Frank</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="players" id="players">
+                            <option value="none" selected disabled hidden></option>
+                            <option value="Keith">Keith</option>
+                            <option value="Mike">Mike</option>
+                            <option value="Frank">Frank</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="players" id="players">
+                            <option value="none" selected disabled hidden></option>
+                            <option value="Keith">Keith</option>
+                            <option value="Mike">Mike</option>
+                            <option value="Frank">Frank</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="players" id="players">
+                            <option value="none" selected disabled hidden></option>
+                            <option value="Keith">Keith</option>
+                            <option value="Mike">Mike</option>
+                            <option value="Frank">Frank</option>
+                        </select>
+                    </td>
+                    <td class="hint">
+                        Keith
+                    </td>
+                    <td>
+                        <select name="players" id="players">
+                            <option value="none" selected disabled hidden></option>
+                            <option value="Keith">Keith</option>
+                            <option value="Mike">Mike</option>
+                            <option value="Frank">Frank</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="just__for__space " style="min-height: 10px;background-color: #849971;"></div>
+    </div>
+    <script>
+        let selectedBoxes = document.querySelectorAll("select");
+        let selectedItem;
+        selectedBoxes.forEach(box => {
+            box.addEventListener("change", check);
+        });
+
+        function check() {
+            selectedItem = selectedBoxes[0].options[selectedBoxes[0].selectedIndex].value;
+            if (selectedItem === "Frank") {
+
+            } else {
+                return;
+            }
+            selectedItem = selectedBoxes[1].options[selectedBoxes[1].selectedIndex].value;
+            if (selectedItem === "Frank") {
+
+            } else {
+                return;
+            }
+            selectedItem = selectedBoxes[2].options[selectedBoxes[2].selectedIndex].value;
+            if (selectedItem === "Frank") {
+
+            } else {
+                return;
+            }
+            selectedItem = selectedBoxes[3].options[selectedBoxes[3].selectedIndex].value;
+            if (selectedItem === "Frank") {
+
+            } else {
+                return;
+            }
+            selectedItem = selectedBoxes[4].options[selectedBoxes[4].selectedIndex].value;
+            if (selectedItem === "Frank") {
+
+            } else {
+                return;
+            }
+            selectedItem = selectedBoxes[5].options[selectedBoxes[5].selectedIndex].value;
+            if (selectedItem === "Frank") {
+
+            } else {
+                return;
+            }
+            selectedItem = selectedBoxes[6].options[selectedBoxes[6].selectedIndex].value;
+            if (selectedItem === "Frank") {
+
+            } else {
+                return;
+            }
+            selectedItem = selectedBoxes[7].options[selectedBoxes[7].selectedIndex].value;
+            if (selectedItem === "Frank") {
+
+            } else {
+                return;
+            }
+            selectedItem = selectedBoxes[8].options[selectedBoxes[8].selectedIndex].value;
+            if (selectedItem === "Frank") {
+
+            } else {
+                return;
+            }
+            selectedItem = selectedBoxes[9].options[selectedBoxes[9].selectedIndex].value;
+            if (selectedItem === "Frank") {
+
+            } else {
+                return;
+            }
+            selectedItem = selectedBoxes[10].options[selectedBoxes[10].selectedIndex].value;
+            if (selectedItem === "Mike") {
+
+            } else {
+                return;
+            }
+            selectedItem = selectedBoxes[11].options[selectedBoxes[11].selectedIndex].value;
+            if (selectedItem === "Mike") {
+
+            } else {
+                return;
+            }
+            selectedItem = selectedBoxes[12].options[selectedBoxes[12].selectedIndex].value;
+            if (selectedItem === "Mike") {
+
+            } else {
+                return;
+            }
+            selectedItem = selectedBoxes[13].options[selectedBoxes[13].selectedIndex].value;
+            if (selectedItem === "Mike") {
+
+            } else {
+                return;
+            }
+            selectedItem = selectedBoxes[14].options[selectedBoxes[14].selectedIndex].value;
+            if (selectedItem === "Mike") {
+
+            } else {
+                return;
+            }
+            selectedItem = selectedBoxes[15].options[selectedBoxes[15].selectedIndex].value;
+            if (selectedItem === "Mike") {
+
+            } else {
+                return;
+            }
+            selectedItem = selectedBoxes[16].options[selectedBoxes[16].selectedIndex].value;
+            if (selectedItem === "Mike") {
+
+            } else {
+                return;
+            }
+            selectedItem = selectedBoxes[17].options[selectedBoxes[17].selectedIndex].value;
+            if (selectedItem === "Mike") {
+
+            } else {
+                return;
+            }
+            selectedItem = selectedBoxes[18].options[selectedBoxes[18].selectedIndex].value;
+            if (selectedItem === "Mike") {
+
+            } else {
+                return;
+            }
+            selectedItem = selectedBoxes[19].options[selectedBoxes[19].selectedIndex].value;
+            if (selectedItem === "Keith") {
+
+            } else {
+                return;
+            }
+            selectedItem = selectedBoxes[20].options[selectedBoxes[20].selectedIndex].value;
+            if (selectedItem === "Mike") {
+
+            } else {
+                return;
+            }
+            selectedItem = selectedBoxes[21].options[selectedBoxes[21].selectedIndex].value;
+            if (selectedItem === "Keith") {
+
+            } else {
+                return;
+            }
+            selectedItem = selectedBoxes[22].options[selectedBoxes[22].selectedIndex].value;
+            if (selectedItem === "Mike") {
+
+            } else {
+                return;
+            }
+            selectedItem = selectedBoxes[23].options[selectedBoxes[23].selectedIndex].value;
+            if (selectedItem === "Keith") {
+
+            } else {
+                return;
+            }
+            selectedItem = selectedBoxes[24].options[selectedBoxes[24].selectedIndex].value;
+            if (selectedItem === "Mike") {
+
+            } else {
+                return;
+            }
+            selectedItem = selectedBoxes[25].options[selectedBoxes[25].selectedIndex].value;
+            if (selectedItem === "Keith") {
+
+            } else {
+                return;
+            }
+            selectedItem = selectedBoxes[26].options[selectedBoxes[26].selectedIndex].value;
+            if (selectedItem === "Frank") {
+
+            } else {
+                return;
+            }
+            selectedItem = selectedBoxes[27].options[selectedBoxes[27].selectedIndex].value;
+            if (selectedItem === "Keith") {
+
+            } else {
+                return;
+            }
+            selectedItem = selectedBoxes[28].options[selectedBoxes[28].selectedIndex].value;
+            if (selectedItem === "Frank") {
+
+            } else {
+                return;
+            }
+            selectedItem = selectedBoxes[29].options[selectedBoxes[29].selectedIndex].value;
+            if (selectedItem === "Keith") {
+
+            } else {
+                return;
+            }
+            selectedItem = selectedBoxes[30].options[selectedBoxes[30].selectedIndex].value;
+            if (selectedItem === "Frank") {
+
+            } else {
+                return;
+            }
+            selectedItem = selectedBoxes[31].options[selectedBoxes[31].selectedIndex].value;
+            if (selectedItem === "Frank") {
+
+            } else {
+                return;
+            }
+            setTimeout(alertEvent, 500);
+        }
+
+        function alertEvent() {
+            alert("Congratulations! You have filled in the scorecard correctly...but what to do next? \n\nPlease take a screenshot of this page so you don't lose your progress!")
+
+        }
+
+
+// var x, i, j, l, ll, selElmnt, a, b, c;
+// /*look for any elements with the class "custom-select":*/
+// x = document.getElementsByClassName("custom-select");
+// l = x.length;
+// for (i = 0; i < l; i++) {
+//   selElmnt = x[i].getElementsByTagName("select")[0];
+//   ll = selElmnt.length;
+//   /*for each element, create a new DIV that will act as the selected item:*/
+//   a = document.createElement("DIV");
+//   a.setAttribute("class", "select-selected");
+//   a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+//   x[i].appendChild(a);
+//   /*for each element, create a new DIV that will contain the option list:*/
+//   b = document.createElement("DIV");
+//   b.setAttribute("class", "select-items select-hide");
+//   for (j = 1; j < ll; j++) {
+//     /*for each option in the original select element,
+//     create a new DIV that will act as an option item:*/
+//     c = document.createElement("DIV");
+//     c.innerHTML = selElmnt.options[j].innerHTML;
+//     c.addEventListener("click", function(e) {
+//         /*when an item is clicked, update the original select box,
+//         and the selected item:*/
+//         var y, i, k, s, h, sl, yl;
+//         s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+//         sl = s.length;
+//         h = this.parentNode.previousSibling;
+//         for (i = 0; i < sl; i++) {
+//           if (s.options[i].innerHTML == this.innerHTML) {
+//             s.selectedIndex = i;
+//             h.innerHTML = this.innerHTML;
+//             y = this.parentNode.getElementsByClassName("same-as-selected");
+//             yl = y.length;
+//             for (k = 0; k < yl; k++) {
+//               y[k].removeAttribute("class");
+//             }
+//             this.setAttribute("class", "same-as-selected");
+//             break;
+//           }
+//         }
+//         h.click();
+//     });
+//     b.appendChild(c);
+//   }
+//   x[i].appendChild(b);
+//   a.addEventListener("click", function(e) {
+//       /*when the select box is clicked, close any other select boxes,
+//       and open/close the current select box:*/
+//       e.stopPropagation();
+//       closeAllSelect(this);
+//       this.nextSibling.classList.toggle("select-hide");
+//       this.classList.toggle("select-arrow-active");
+//     });
+// }
+// function closeAllSelect(elmnt) {
+//   /*a function that will close all select boxes in the document,
+//   except the current select box:*/
+//   var x, y, i, xl, yl, arrNo = [];
+//   x = document.getElementsByClassName("select-items");
+//   y = document.getElementsByClassName("select-selected");
+//   xl = x.length;
+//   yl = y.length;
+//   for (i = 0; i < yl; i++) {
+//     if (elmnt == y[i]) {
+//       arrNo.push(i)
+//     } else {
+//       y[i].classList.remove("select-arrow-active");
+//     }
+//   }
+//   for (i = 0; i < xl; i++) {
+//     if (arrNo.indexOf(i)) {
+//       x[i].classList.add("select-hide");
+//     }
+//   }
+// }
+// /*if the user clicks anywhere outside the select box,
+// then close all select boxes:*/
+// document.addEventListener("click", closeAllSelect);
+    </script>
+</body>
+
+</html>
